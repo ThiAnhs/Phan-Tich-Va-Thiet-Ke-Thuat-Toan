@@ -14,31 +14,31 @@ DoVat *ReadFromFile(int *W, int *n){
      f = fopen("QHD_CaiBaLo.txt", "r");
      fscanf(f, "%d",W); // Xac dinh trong luong Ba lo
 	 DoVat *dsdv;
-	 dsdv=(DoVat*)malloc(sizeof(DoVat));
+	 dsdv = (DoVat*)malloc(sizeof(DoVat));
 	 int i=0;
  	 while (!feof(f)){
 	   fscanf(f, "%d%d%[^\n]",&dsdv[i].TL,&dsdv[i].GT,&dsdv[i].TenDV);
-	   dsdv[i].PA=0;
+	   dsdv[i].PA = 0;
 	   i++;
 	   dsdv=(DoVat*)realloc(dsdv,sizeof(DoVat)*(i+1));  
 	 }
-	 *n=i;
+	 *n = i;
      fclose(f);
      return dsdv;
 }
 
 void InDSDV(DoVat *dsdv ,int n, int W){
-	int i, TongTL=0, TongGT=0;
+	int i, TongTL = 0, TongGT = 0;
 	printf("\nPhuong an Cai Ba lo 1 dung thuat toan QUY HOACH DONG nhu sau:\n");
 	printf("Trong luong cua ba lo = %-9d\n",W);
 		printf("|---|------------------|----------|---------|-----------|\n");
 		printf("|STT|     Ten Do Vat   | T Luong  | Gia Tri | Phuong an |\n");
 		printf("|---|------------------|----------|---------|-----------|\n");
-	for(i=0;i<n;i++){
+	for(i = 0; i < n; i++){
 		printf("|%2d |%-18s|%5d     |%5d    |%6d     |\n",
 		i+1,dsdv[i].TenDV,dsdv[i].TL,dsdv[i].GT,dsdv[i].PA);
-		TongTL=TongTL+dsdv[i].PA * dsdv[i].TL;
-		TongGT=TongGT+dsdv[i].PA * dsdv[i].GT;
+		TongTL = TongTL + dsdv[i].PA * dsdv[i].TL;
+		TongGT = TongGT + dsdv[i].PA * dsdv[i].GT;
 	}	
 	printf("|---|------------------|----------|---------|-----------|\n");
 	printf("\nPhuong an (theo thu tu DG giam dan): ");
